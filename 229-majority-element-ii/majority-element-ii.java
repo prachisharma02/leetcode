@@ -3,17 +3,17 @@ class Solution {
         int n = nums.length;
         int max = n / 3;
         ArrayList<Integer> ar = new ArrayList<>();
+        HashMap<Integer, Integer> count = new HashMap<>();
         
-        // Create a HashMap to count occurrences of each element
-        HashMap<Integer, Integer> countMap = new HashMap<>();
-        
-        // Count occurrences of each element
+  
         for (int num : nums) {
-            countMap.put(num, countMap.getOrDefault(num, 0) + 1);
-        }
-
-        // Check if the count of each element is greater than n/3
-        for (Map.Entry<Integer, Integer> entry : countMap.entrySet()) {
+    if (count.containsKey(num)) {
+        count.put(num, count.get(num) + 1);
+    } else {
+        count.put(num, 1);
+    }
+}
+for (Map.Entry<Integer, Integer> entry : count.entrySet()) {
             if (entry.getValue() > max) {
                 ar.add(entry.getKey());
             }
