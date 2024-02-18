@@ -1,25 +1,26 @@
-import java.util.ArrayList;
-
 class Solution {
+    public static void reverse(int[] arr,int start,int end){
+        while(start<=end){
+            int temp=arr[start];
+            arr[start]=arr[end];
+            arr[end]=temp;
+            start++;
+            end--;
+        }
+        
+    }
     public void rotate(int[] nums, int k) {
-        int n = nums.length;
-        k = k % n; // Ensure k is within the range of array length
-
-        ArrayList<Integer> ar = new ArrayList<>();
-
-        // Copy the last k elements to ar
-        for (int i = n - k; i < n; i++) {
-            ar.add(nums[i]);
-        }
-
-        // Copy the first (n - k) elements to ar
-        for (int j = 0; j < n - k; j++) {
-            ar.add(nums[j]);
-        }
-
-        // Copy the elements from ar back to nums
-        for (int i = 0; i < n; i++) {
-            nums[i] = ar.get(i);
-        }
+       int n=nums.length;
+       if (n == 1) {
+           return; // No rotation needed for a single-element array
+       }
+       k = k % n; // Handle cases where k is greater than n
+       if (k == 0) {
+           return; // No rotation needed if k is a multiple of n
+       }
+        reverse(nums,0,n-k-1);
+        reverse(nums,n-k,n-1);
+        reverse(nums,0,n-1);
+        
     }
 }
